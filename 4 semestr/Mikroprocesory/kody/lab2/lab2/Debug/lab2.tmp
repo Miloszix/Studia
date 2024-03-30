@@ -1,0 +1,32 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega328PB"</DEVICE>
+ <WORKING_DIR>C:\Users\milos\Documents\studia\4 semestr\Mikroprocesory\kody\lab2\lab2\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\milos\Documents\studia\4 semestr\Mikroprocesory\kody\lab2\lab2\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328PBdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\milos\Documents\studia\4 semestr\Mikroprocesory\kody\lab2\lab2\Debug\lab2.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>lab2.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>lab2.map</FILE>
+  <FILE>lab2.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <loop><FILE>C:\Users\milos\Documents\studia\4 semestr\Mikroprocesory\kody\lab2\lab2\main.asm</FILE><LINE>12</LINE></loop>
+  <led><FILE>C:\Users\milos\Documents\studia\4 semestr\Mikroprocesory\kody\lab2\lab2\main.asm</FILE><LINE>14</LINE></led>
+  <inner_loop><FILE>C:\Users\milos\Documents\studia\4 semestr\Mikroprocesory\kody\lab2\lab2\main.asm</FILE><LINE>17</LINE></inner_loop>
+  <inner_loop2><FILE>C:\Users\milos\Documents\studia\4 semestr\Mikroprocesory\kody\lab2\lab2\main.asm</FILE><LINE>19</LINE></inner_loop2>
+  <inner_loop3><FILE>C:\Users\milos\Documents\studia\4 semestr\Mikroprocesory\kody\lab2\lab2\main.asm</FILE><LINE>21</LINE></inner_loop3>
+  <inner_loop4><FILE>C:\Users\milos\Documents\studia\4 semestr\Mikroprocesory\kody\lab2\lab2\main.asm</FILE><LINE>23</LINE></inner_loop4>
+ </LABELS>
+</ASSEMBLER_INFO>
