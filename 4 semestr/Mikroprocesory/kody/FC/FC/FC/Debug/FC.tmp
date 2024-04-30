@@ -1,0 +1,48 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega328PB"</DEVICE>
+ <WORKING_DIR>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328PBdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\Debug\FC.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>FC.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>FC.map</FILE>
+  <FILE>FC.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <start1><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>21</LINE></start1>
+  <prime><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>18</LINE></prime>
+  <over1><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>79</LINE></over1>
+  <over2><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>30</LINE></over2>
+  <sign1><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>83</LINE></sign1>
+  <sign2><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>34</LINE></sign2>
+  <l1><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>75</LINE></l1>
+  <display><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>109</LINE></display>
+  <wait><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>91</LINE></wait>
+  <loop1><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>93</LINE></loop1>
+  <loop2><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>95</LINE></loop2>
+  <loop3><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>97</LINE></loop3>
+  <loop0><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>111</LINE></loop0>
+  <seg1><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>124</LINE></seg1>
+  <seg2><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>140</LINE></seg2>
+  <seg3><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>156</LINE></seg3>
+  <seg4><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>171</LINE></seg4>
+  <l2><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>133</LINE></l2>
+  <l3><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>150</LINE></l3>
+  <l5><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>165</LINE></l5>
+  <l7><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>181</LINE></l7>
+  <start><FILE>C:\Users\milos\Documents\Studia\4 semestr\Mikroprocesory\kody\FC\FC\FC\main.asm</FILE><LINE>189</LINE></start>
+ </LABELS>
+</ASSEMBLER_INFO>
