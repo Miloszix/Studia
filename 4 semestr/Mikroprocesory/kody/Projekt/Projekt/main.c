@@ -2,15 +2,14 @@
  * Projekt.c
  *
  * Created: 27.05.2024 18:50:56
- * Author : milos
+ * Author : Mi³osz Mynarczuk, Dawid Makowski
  */
  
 #define F_CPU 16000000UL
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include <avr/delay.h>
 
-#define DEBOUNCE_TIME 100 //us
+#define DEBOUNCE_TIME 1 //ms
 
 volatile int16_t target; // mno¿nik encoder value
 volatile int16_t steps; // po³o¿enie silnika
@@ -43,10 +42,9 @@ void setup(void) {
     PCMSK1 |= (1 << PCINT8) | (1 << PCINT9) | (1 << PCINT10); // W³¹czenie przerwañ dla PC0-2
 	PCMSK3 |= (1 << PCINT24) | (1 << PCINT25) | (1 << PCINT26) | (1 << PCINT27); // W³¹czenie przerwañ dla PE0-3
 	
-    // Ustawienie Timer0 w tryb CTC
-    TCCR0A |= (1 << WGM01);
-    TCCR0B |= (1 << CS01) | (1 << CS00); // Ustawienie preskalera na 256
-    OCR0A = 249; //16000000/(64*1000) = 249 ustawienie wartoœci rejestru porównania
+    TCCR0A |= (1 << WGM01); // Ustawienie Timer0 w tryb CTC
+    TCCR0B |= (1 << CS01) | (1 << CS00); // Ustawienie preskalera na 64
+    OCR0A = 249; //16000000/(64*1000) = 250 ustawienie wartoœci rejestru porównania
     TIMSK0 |= (1 << OCIE0A); //w³¹cza przerwanie porównania
 }
 
@@ -63,6 +61,32 @@ const uint8_t digit[11] = {
 	  ~((1 << 0) | (1 << 1) | (1 << 2) | (1 << 3) | (1 << 5) | (1 << 6)), //9
 	  ~(1 << 6) // -
 };
+
+
+void wait_ms(uint16_t milliseconds) {
+	while (milliseconds > 0) {
+		// Ustaw Timer1 w tryb CTC
+		TCCR1A = 0; // Wyzerowanie rejestru kontrolnego A
+		TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10); // WGM12: CTC tryb, CS11 | CS10: Preskaler 64
+
+		// Ustaw wartoœæ porównania dla OCR1A, aby uzyskaæ 1 ms
+		OCR1A = 249; // Liczba cykli na 1 ms - 1
+
+		// Wyczyœæ licznik
+		TCNT1 = 0;
+
+		// Poczekaj na ustawienie flagi porównania
+		while (!(TIFR1 & (1 << OCF1A)));
+
+		// Wyczyœæ flagê porównania
+		TIFR1 = (1 << OCF1A);
+
+		// Zmniejsz licznik milisekund
+		milliseconds--;
+		
+		//16M/64=250k   250/250k=1ms
+	}
+}
 
 void display_digit(uint8_t digit_value, uint8_t position) {
 	// Wy³¹czenie cyfr
@@ -106,7 +130,7 @@ void display_number(int16_t number) {
 	digits[2] = (number / 10) % 10;
 	digits[3] = number % 10;
 
-	display_digit(digits[position], position);
+	display_digit(digits[position], position); //wyœwietlenie
 	
 }
 
@@ -114,7 +138,7 @@ void display_number(int16_t number) {
 ISR(PCINT1_vect) {
     // Odczytaj bie¿¹cy stan CLK
     uint8_t currentStateCLK = PINC & (1 << 0);
-	_delay_us(DEBOUNCE_TIME); // zapobieganie glitchom podczas przekrêcania
+	wait_ms(DEBOUNCE_TIME); // zapobieganie glitchom podczas przekrêcania
 	
 	//przypadek dla programu 0 kiedy switch na enkoderze jest wciœniêty	
 	if (((PINC&(1<<2))==0)&(state==0)){
@@ -141,7 +165,7 @@ ISR(PCINT1_vect) {
 					encoderValue--; // Obrót w przeciwnym kierunku do wskazówek zegara
 				}
 			}
-			target=encoderValue*5;
+			target=encoderValue*5; //pomno¿one ¿eby by³o lepiej widaæ obrót
 		}
 	}
 	// ograniczenie wartoœci enkoder dla programu 1 i 2, od 0 do 9
@@ -154,6 +178,17 @@ ISR(PCINT1_vect) {
 			}
 	}
     lastStateCLK = currentStateCLK; // Aktualizacja ostatniego stanu CLK
+	
+	if(encoderValue>9999){
+		encoderValue=0;
+		steps = 0;
+		target = 0;
+	}
+	if (encoderValue<-999){
+		encoderValue =0;
+		steps = 0;
+		target = 0;
+	}
 }
 
 //przerwania na wciœniecie przycisku
@@ -186,7 +221,7 @@ ISR(TIMER0_COMPA_vect) {
 		position++;
 	}
 }
-
+//pod³¹czanie odpowiedniego elektromagnesu
 void stepMotor(int step) {
 	switch (step) {
 		case 1:
@@ -221,7 +256,7 @@ int main(void) {
 	int speed;
     
     while (1) {
-		// obrót do stanu enkodera
+		// obrót do stanu enkodera z minimalnym opóŸnieniem
 		if(state==0){		
 			while(target>steps){
 				steps++;
@@ -231,7 +266,7 @@ int main(void) {
 					i++;
 				}
 				stepMotor(i);
-				_delay_ms(2);
+				wait_ms(2);
 			}
 			while(target<steps){
 				steps--;
@@ -241,7 +276,7 @@ int main(void) {
 					i--;
 				}
 				stepMotor(i);
-				_delay_ms(2);	
+				wait_ms(2);	
 			}
 		}
 		
@@ -257,7 +292,7 @@ int main(void) {
 			}		
 			//opó¿nienie do kontroli prêdkoœci
 			for(uint8_t t = 0; t<speed; t++ ){
-				_delay_ms(2);
+				wait_ms(2);
 			}
 		}
 		
@@ -273,7 +308,7 @@ int main(void) {
 			}
 			//opó¿nienie do kontroli prêdkoœci
 			for(uint8_t t = 0; t<speed; t++ ){
-				_delay_ms(2);
+				wait_ms(2);
 			}
 		}
 		
